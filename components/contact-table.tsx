@@ -1,6 +1,7 @@
-import React from 'react'
+import { getContacts } from "@/lib/data"
 
-const ContactTable = () => {
+const ContactTable = async () => {
+    const contacts = await getContacts();
   return (
     <table className='w-full text-sm text-left text-gray-500'>
         <thead className='text-sm text-gray-700 uppercase bg-gray-50'>
@@ -13,13 +14,16 @@ const ContactTable = () => {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td className='py-3 px-6'></td>
-                <td className='py-3 px-6'></td>
-                <td className='py-3 px-6'></td>
-                <td className='py-3 px-6'></td>
+
+            {contacts.map((contact, index) => (
+            <tr key={contact.id} className="bg-white border-b">
+                <td className='py-3 px-6'>{index + 1}</td>
+                <td className='py-3 px-6'>{contact.name}</td>
+                <td className='py-3 px-6'>{contact.phone}</td>
+                <td className='py-3 px-6'>{contact.createdAt.toString()}</td>
                 <td></td>
             </tr>
+            ))}
         </tbody>
     </table>
   )
