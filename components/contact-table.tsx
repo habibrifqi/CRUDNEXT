@@ -1,30 +1,45 @@
 import { getContacts } from "@/lib/data"
+import {convertToIndonesiaFormat} from "@/lib/formatdate"
+import { EditButton,DeleteButton } from "@/components/buttons";
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+  } from "@/components/ui/table"
 
 const ContactTable = async () => {
     const contacts = await getContacts();
   return (
-    <table className='w-full text-sm text-left text-gray-500'>
-        <thead className='text-sm text-gray-700 uppercase bg-gray-50'>
-            <tr>
-                <th className='py-3 px-6'>#</th>
-                <th className='py-3 px-6'>Name</th>
-                <th className='py-3 px-6'>Phone Number</th>
-                <th className='py-3 px-6'>Created At</th>
-                <th className='py-3 px-6 text-center'>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <table className=''>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader className=''>
+            <TableRow>
+                <TableHead  className=''>#</TableHead >
+                <TableHead  className=''>Name</TableHead >
+                <TableHead  className=''>Phone Number</TableHead >
+                <TableHead  className=''>Created At</TableHead >
+                <TableHead  className=' text-center'>Actions</TableHead >
+            </TableRow>
+        </TableHeader>
+        <TableBody>
 
             {contacts.map((contact, index) => (
-            <tr key={contact.id} className="bg-white border-b">
-                <td className='py-3 px-6'>{index + 1}</td>
-                <td className='py-3 px-6'>{contact.name}</td>
-                <td className='py-3 px-6'>{contact.phone}</td>
-                <td className='py-3 px-6'>{contact.createdAt.toString()}</td>
-                <td></td>
-            </tr>
+            <TableRow key={contact.id} className="bg-white border-b">
+                <TableCell  className='py-3 px-6'>{index + 1}</TableCell>
+                <TableCell  className='py-3 px-6'>{contact.name}</TableCell >
+                <TableCell  className='py-3 px-6'>{contact.phone}</TableCell >
+                <TableCell  className='py-3 px-6'>{convertToIndonesiaFormat(contact.createdAt.toString())}</TableCell >
+                <TableCell  className="py-3 px-6 text-center flex justify-center gap-2">
+                    <EditButton/>
+                    <DeleteButton/>
+                </TableCell >
+            </TableRow>
             ))}
-        </tbody>
+        </TableBody>
     </table>
   )
 }
