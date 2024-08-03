@@ -10,8 +10,5 @@ export const convertToIndonesiaFormat = (dateString: string): string => {
     
         timeZone: 'Asia/Jakarta'
       };
-    
       return new Intl.DateTimeFormat('id-ID', options).format(new Date(dateString));
-
-    return dateString
-  };
+ };

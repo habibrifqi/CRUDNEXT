@@ -18,10 +18,10 @@ export const CreateButton = () => {
     );
 }
 
-export const EditButton = () => {
+export const EditButton = ({id}:{id:string}) => {
     return (
         <Link
-        href={"/contacts/create"}
+        href={`/contacts/edit/${id}`}
             className={buttonVariants({ variant: "secondary" })}
             type="button"
         >

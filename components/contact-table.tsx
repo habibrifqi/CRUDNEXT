@@ -15,7 +15,7 @@ const ContactTable = async () => {
     const contacts = await getContacts();
   return (
     <table className=''>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>CURD AJA</TableCaption>
         <TableHeader className=''>
             <TableRow>
                 <TableHead  className=''>#</TableHead >
@@ -34,7 +34,7 @@ const ContactTable = async () => {
                 <TableCell  className='py-3 px-6'>{contact.phone}</TableCell >
                 <TableCell  className='py-3 px-6'>{convertToIndonesiaFormat(contact.createdAt.toString())}</TableCell >
                 <TableCell  className="py-3 px-6 text-center flex justify-center gap-2">
-                    <EditButton/>
+                    <EditButton id={contact.id}/>
                     <DeleteButton/>
                 </TableCell >
             </TableRow>

@@ -34,3 +34,27 @@ export const saveContact = async (prevSate:any,formData:FormData) =>{
     revalidatePath("/contacts");
     redirect("/contacts");
 }
+export const updateContact = async (id:string,prevSate:any,formData:FormData) =>{
+    const validatedFields = ContactSchema.safeParse(Object.fromEntries(formData.entries()));
+    if (!validatedFields.success) {
+        return{
+            Error:validatedFields.error.flatten().fieldErrors
+        }
+    }
+
+    try {
+        await prisma.contact.update({
+            data :{
+                name :validatedFields.data.name,
+                phone :validatedFields.data.phone
+            },
+            where:{id}
+        })
+
+    } catch (error) {
+        return {message : "failed to crete contact"}
+    }
+
+    revalidatePath("/contacts");
+    redirect("/contacts");
+}
