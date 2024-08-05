@@ -5,6 +5,7 @@ import { useFormStatus  } from "react-dom";
 import clsx from "clsx";
 import { buttonVariants } from "@/components/ui/button"
 import { Button } from "@/components/ui/button"
+import { deleteContanct } from "@/lib/actions";
 
 
 export const CreateButton = () => {
@@ -30,14 +31,16 @@ export const EditButton = ({id}:{id:string}) => {
     );
 }
 
-export const DeleteButton = () => {
+export const DeleteButton = ({id}:{id:string}) => {
+    const DeleteContanctWintId = deleteContanct.bind(null,id) 
     return (
+        <form action={DeleteContanctWintId}>
         <button
-       
         className={buttonVariants({ variant: "default" })}
         >
             <IoTrashOutline size={20}/>
         </button>
+        </form>
     );
 }
 

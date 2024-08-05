@@ -35,7 +35,7 @@ const ContactTable = async () => {
                 <TableCell  className='py-3 px-6'>{convertToIndonesiaFormat(contact.createdAt.toString())}</TableCell >
                 <TableCell  className="py-3 px-6 text-center flex justify-center gap-2">
                     <EditButton id={contact.id}/>
-                    <DeleteButton/>
+                    <DeleteButton id={contact.id}/>
                 </TableCell >
             </TableRow>
             ))}
