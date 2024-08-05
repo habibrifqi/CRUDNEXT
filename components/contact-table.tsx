@@ -11,8 +11,9 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
-const ContactTable = async () => {
-    const contacts = await getContacts();
+const ContactTable = async ( {query,currentPage}: {query:string,currentPage:number}) => {
+    const contacts = await getContacts(query,currentPage);
+    console.log(query)
   return (
     <table className=''>
         <TableCaption>CURD AJA</TableCaption>
